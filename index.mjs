@@ -237,7 +237,7 @@ class MacCertStore extends CertStore {
 
 	static async _install(arg) {
 		await this.createTempFileIfNeeded(arg)
-		const certPath = path.join(__dirname, arg.tempPath)
+		const certPath = arg.path || arg.tempPath
 		const cmd = `security add-trusted-cert -d -k "${MAC_DIR}" "${certPath}"`
 
 		await new Promise((resolve, reject) => {
