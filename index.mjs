@@ -241,7 +241,7 @@ class MacCertStore extends CertStore {
 		const cmd = `security add-trusted-cert -d -k "${MAC_DIR}" "${certPath}"`
 
 		await new Promise((resolve, reject) => {
-			sudo.exec(cmd, err => err ? reject(err) : resolve() )
+			sudo.exec(cmd, { name: 'Install Cert' }, err => err ? reject(err) : resolve() )
 		})
 	}
 
